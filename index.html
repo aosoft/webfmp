@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#111416" />
+  <title>WebFMP — PC-98 FM Player</title>
+  <script type="module" crossorigin src="/webfmp/assets/index-BLQ018kr.js"></script>
+  <link rel="stylesheet" crossorigin href="/webfmp/assets/index-C8Z7BRkZ.css">
+</head>
+<body>
+  <main>
+    <header class="masthead">
+      <a class="brand" href="./" aria-label="WebFMP ホーム"><span class="brand-mark">f</span> WebFMP</a>
+      <button id="play-theme" type="button" disabled>Theme of FMP を再生</button>
+    </header>
+    <section id="monitor" class="monitor" aria-label="音源モニター"></section>
+    <div id="settings" hidden></div>
+    <div id="diagnostics" class="technical" hidden><div class="technical-content"><pre id="song-title" class="song-title" aria-label="曲データのタイトル" hidden></pre><p id="track-detail">FMP · OPNA ミュージックデータ</p><p class="pcm-files">PCM1 (ADPCM): <span id="pcm1-file">—</span><br>PCM2 (PPZ): <span id="pcm2-file">—</span></p><div class="stats"><div><small>CPU</small><span>NEC V30</span></div><div><small>OUTPUT</small><span id="sample-rate">48 kHz</span></div><div><small>FM WRITES</small><span id="writes">—</span></div><div><small>BUFFER</small><span id="buffer">—</span></div></div><pre id="console">FMP.COM をロードしています…</pre></div>
+    <footer><span>WebFMP</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
+  </main>
+  <section class="player-bar" aria-label="再生とファイル選択">
+    <div class="player-scroll">
+      <div class="player-row">
+        <button id="previous-track" class="icon-button" aria-label="前の曲を再生" title="前の曲" disabled><span aria-hidden="true">❘◀</span></button>
+        <button id="play" class="play-button" title="再生 / 一時停止（Space）" aria-keyshortcuts="Space" disabled><span id="play-icon" aria-hidden="true">▶</span><span id="play-label" class="sr-only">再生する</span></button>
+        <button id="next-track" class="icon-button" aria-label="次の曲を再生" title="次の曲" disabled><span aria-hidden="true">▶❘</span></button>
+        <button id="stop" class="icon-button" aria-label="停止して先頭に戻す" title="停止して先頭に戻す" disabled>■</button>
+        <span id="elapsed" aria-label="再生時間">00:00</span>
+        <input id="seek" type="range" min="0" max="0" step="any" value="0" aria-label="再生位置" aria-valuetext="00:00" disabled>
+        <span id="duration" aria-label="曲の全長">—</span>
+        <div class="monitor-counters"><span>TEMPO <b id="monitor-tempo">—</b></span><span>LOOP <b id="monitor-loop">—</b></span></div>
+        <i id="status-light" aria-hidden="true"></i><span id="status" class="sr-only" role="status" aria-live="polite">再生の準備をしています</span>
+        <span id="track-name">曲ファイル未選択</span>
+        <label class="file-button accent" title="曲データを選択">曲を選択<input id="song-file" type="file" multiple aria-label="曲データを選択"></label>
+        <label class="volume"><span class="sr-only">音量</span><input id="volume" type="range" min="0" max="100" value="65" aria-label="音量"><span id="volume-value">65%</span></label>
+      </div>
+    </div>
+    <div id="drop-progress" class="drop-progress" hidden><span id="drop-progress-label" role="status" aria-live="polite"></span><progress id="drop-progress-bar" aria-label="曲データの読み込み進捗"></progress><button id="drop-cancel" type="button">中断</button></div>
+    <div id="error" role="alert" hidden></div>
+  </section>
+</body>
+</html>
