@@ -23,15 +23,18 @@
   <meta name="twitter:description" content="PC-9801のFMP曲データをブラウザで再生。鍵盤、ピアノロール、スペクトラム表示とプレイリストに対応。" />
   <meta name="twitter:image" content="https://aosoft.github.io/webfmp/dev/social-card.png" />
   <meta name="twitter:image:alt" content="WebFMPのロゴと、レベルメーター、鍵盤、ピアノロールのイメージ" />
-  <script type="module" crossorigin src="/webfmp/dev/assets/index-Y98j52Ie.js"></script>
-  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-Bm31TNoU.css">
+  <script type="module" crossorigin src="/webfmp/dev/assets/index-Bu9arHnq.js"></script>
+  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-Dy__mm1j.css">
 </head>
 <body>
+  <header class="masthead">
+    <a class="brand" href="./" aria-label="WebFMP ホーム"><span class="brand-mark">f</span> WebFMP<small class="brand-dev">(dev)</small></a>
+    <button id="fullscreen" type="button" class="file-button fullscreen-toggle" role="switch" aria-checked="false" aria-label="フルスクリーン" title="フルスクリーンにする" disabled><span class="fullscreen-switch" aria-hidden="true"></span>フルスクリーン</button>
+    <div class="display-scale"><button id="display-scale-reset" type="button" title="表示倍率を1.0倍に戻す">表示倍率</button><input id="display-scale" type="range" min="0.5" max="3" step="0.1" value="1" aria-label="表示倍率"><button id="display-scale-value" type="button" title="表示倍率を1.0倍に戻す" aria-label="表示倍率を1.0倍に戻す">1.0×</button></div>
+    <button id="current-song-title" type="button" popovertarget="song-title-overlay" aria-label="曲タイトル" hidden></button>
+  </header>
+  <pre id="song-title-overlay" class="song-title song-title-overlay" popover="auto" aria-label="曲タイトル（3行表示）"></pre>
   <main>
-    <header class="masthead">
-      <a class="brand" href="./" aria-label="WebFMP ホーム"><span class="brand-mark">f</span> WebFMP<small class="brand-dev">(dev)</small></a>
-      <button id="play-theme" type="button" disabled>Theme of FMP を再生</button>
-    </header>
     <section id="monitor" class="monitor" aria-label="音源モニター"></section>
     <div id="settings" hidden></div>
     <div id="diagnostics" class="technical" hidden><div class="technical-content"><pre id="song-title" class="song-title" aria-label="曲データのタイトル" hidden></pre><p id="track-detail">FMP · OPNA ミュージックデータ</p><p class="pcm-files">PCM1 (ADPCM): <span id="pcm1-file">—</span><br>PCM2 (PPZ): <span id="pcm2-file">—</span></p><div class="stats"><div><small>CPU</small><span>NEC V30</span></div><div><small>OUTPUT</small><span id="sample-rate">48 kHz</span></div><div><small>FM WRITES</small><span id="writes">—</span></div><div><small>BUFFER</small><span id="buffer">—</span></div></div><pre id="console">FMP.COM をロードしています…</pre></div>
@@ -39,7 +42,7 @@
       <div><label>パフォーマンス計測 <select aria-label="パフォーマンス計測"><option value="off" selected>OFF</option><option value="simple">簡易</option><option value="detailed">詳細</option></select></label><span>演奏開始時に反映</span><button type="button" data-diagnostic-copy>診断をコピー</button><button type="button" data-diagnostic-clear>クリア</button><span data-copy-status aria-live="polite"></span></div>
       <textarea readonly wrap="soft" spellcheck="false" aria-label="パフォーマンス計測の結果"></textarea>
     </section>
-    <footer><span id="build-info">WebFMP 2026-10-10 (d83489d)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
+    <footer><span id="build-info">WebFMP 2026-10-22 (49adb45)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
   </main>
   <section class="player-bar" aria-label="再生とファイル選択">
     <div class="player-scroll">
@@ -56,12 +59,11 @@
         <span id="track-name">曲ファイル未選択</span>
         <label class="file-button accent" title="曲データを選択">曲を選択<input id="song-file" type="file" multiple aria-label="曲データを選択"></label>
         <label class="volume"><span class="sr-only">音量</span><input id="volume" type="range" min="0" max="100" value="65" aria-label="音量"><span id="volume-value">65%</span></label>
-        <button id="fullscreen" type="button" class="file-button fullscreen-toggle" role="switch" aria-checked="false" aria-label="フルスクリーン" title="フルスクリーンにする" disabled><span class="fullscreen-switch" aria-hidden="true"></span>フルスクリーン</button>
-        <div class="display-scale"><button id="display-scale-reset" type="button" title="表示倍率を1.0倍に戻す">表示倍率</button><input id="display-scale" type="range" min="0.5" max="3" step="0.1" value="1" aria-label="表示倍率"><button id="display-scale-value" type="button" title="表示倍率を1.0倍に戻す" aria-label="表示倍率を1.0倍に戻す">1.0×</button></div>
+        <button id="play-theme" type="button" disabled>Theme of FMP を再生</button>
       </div>
     </div>
     <div id="drop-progress" class="drop-progress" hidden><span id="drop-progress-label" role="status" aria-live="polite"></span><progress id="drop-progress-bar" aria-label="曲データの読み込み進捗"></progress><button id="drop-cancel" type="button">中断</button></div>
-    <div id="error" role="alert" hidden></div>
+    <div id="error" role="alert" hidden><span data-error-message></span><div class="error-actions"><button type="button" data-error-authorize hidden>全て許可する</button><button type="button" data-error-close>閉じる</button></div></div>
   </section>
 </body>
 </html>
