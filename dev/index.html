@@ -23,13 +23,14 @@
   <meta name="twitter:description" content="PC-9801のFMP曲データをブラウザで再生。鍵盤、ピアノロール、スペクトラム表示とプレイリストに対応。" />
   <meta name="twitter:image" content="https://aosoft.github.io/webfmp/dev/social-card.png" />
   <meta name="twitter:image:alt" content="WebFMPのロゴと、レベルメーター、鍵盤、ピアノロールのイメージ" />
-  <script type="module" crossorigin src="/webfmp/dev/assets/index-DuqUCV_h.js"></script>
-  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-C9MJ3phD.css">
+  <script type="module" crossorigin src="/webfmp/dev/assets/index-B4gBmGKf.js"></script>
+  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-DW0AWLQX.css">
 </head>
 <body>
   <main>
     <header class="masthead">
       <a class="brand" href="./" aria-label="WebFMP ホーム"><span class="brand-mark">f</span> WebFMP<small class="brand-dev">(dev)</small></a>
+      <button id="monitor-header-toggle" type="button" class="file-button fullscreen-toggle" role="switch" aria-checked="true" aria-controls="monitor-overview" aria-label="ヘッダーの表示" title="曲タイトルとレベルメーターの表示"><span class="fullscreen-switch" aria-hidden="true"></span>ヘッダー</button>
       <button id="play-theme" type="button" disabled>Theme of FMP を再生</button>
     </header>
     <section id="monitor" class="monitor" aria-label="音源モニター"></section>
@@ -39,7 +40,7 @@
       <div><label>パフォーマンス計測 <select aria-label="パフォーマンス計測"><option value="off" selected>OFF</option><option value="simple">簡易</option><option value="detailed">詳細</option></select></label><span>演奏開始時に反映</span><button type="button" data-diagnostic-copy>診断をコピー</button><button type="button" data-diagnostic-clear>クリア</button><span data-copy-status aria-live="polite"></span></div>
       <textarea readonly wrap="soft" spellcheck="false" aria-label="パフォーマンス計測の結果"></textarea>
     </section>
-    <footer><span id="build-info">WebFMP aosoft/refactor-1 (bc9bae9)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
+    <footer><span id="build-info">WebFMP main (1719431)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
   </main>
   <section class="player-bar" aria-label="再生とファイル選択">
     <div class="player-scroll">
