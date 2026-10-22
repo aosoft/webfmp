@@ -3,11 +3,12 @@ development by TAN-Y (https://github.com/aosoft)
 
 著作権表示・ライセンス・利用条件
 
-WebFMP は FMP.COM と、以下の第三者コードを使用しています。
+WebFMP は FMP.COM、FMC.EXE と、以下の第三者コードを使用しています。
 各実行ファイル・コードには、それぞれの著作権と利用条件が適用されます。
 第三者コードのライセンスを WebFMP 全体や入力データに一律に適用するものではありません。
 
 FMP.COM 4.28u は同梱許可に基づき、未改変の実行ファイルを同梱・配信します。
+FMC.EXE 3.16z は再頒布許可に基づき、未改変の実行ファイルを同梱・配信します。
 曲データ、PCM データ、リズム WAV は本アプリに同梱しません。
 ユーザーが読み込む曲データ・PCM データ・リズム WAV 等の利用条件は、各権利者の定めに従ってください。
 
@@ -17,6 +18,10 @@ FMP.COM 4.28u
 Copyright (C)1990-98 Osamu "Guu" Nagai
 Theme of FMP — Composed & Arranged by KID
 出典: FMP-SYSTEM Ver 4.28u
+
+FMC.EXE 3.16z
+Copyright (C)1990-2001 Osamu "Guu" Nagai
+出典: FMP-SYSTEM Ver 4.28u / FMC316Z
 
 MAME NEC V30 Rust port
 出典: https://github.com/mamedev/mame/tree/master/src/devices/cpu/nec
