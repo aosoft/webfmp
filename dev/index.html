@@ -23,26 +23,27 @@
   <meta name="twitter:description" content="PC-9801のFMP曲データをブラウザで再生。鍵盤、ピアノロール、スペクトラム表示とプレイリストに対応。" />
   <meta name="twitter:image" content="https://aosoft.github.io/webfmp/dev/social-card.png" />
   <meta name="twitter:image:alt" content="WebFMPのロゴと、レベルメーター、鍵盤、ピアノロールのイメージ" />
-  <script type="module" crossorigin src="/webfmp/dev/assets/index-Bu9arHnq.js"></script>
-  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-Dy__mm1j.css">
+  <script type="module" crossorigin src="/webfmp/dev/assets/index-0OYU1F8p.js"></script>
+  <link rel="stylesheet" crossorigin href="/webfmp/dev/assets/index-Bpo-ilyC.css">
 </head>
 <body>
   <header class="masthead">
     <a class="brand" href="./" aria-label="WebFMP ホーム"><span class="brand-mark">f</span> WebFMP<small class="brand-dev">(dev)</small></a>
-    <button id="fullscreen" type="button" class="file-button fullscreen-toggle" role="switch" aria-checked="false" aria-label="フルスクリーン" title="フルスクリーンにする" disabled><span class="fullscreen-switch" aria-hidden="true"></span>フルスクリーン</button>
-    <div class="display-scale"><button id="display-scale-reset" type="button" title="表示倍率を1.0倍に戻す">表示倍率</button><input id="display-scale" type="range" min="0.5" max="3" step="0.1" value="1" aria-label="表示倍率"><button id="display-scale-value" type="button" title="表示倍率を1.0倍に戻す" aria-label="表示倍率を1.0倍に戻す">1.0×</button></div>
-    <button id="current-song-title" type="button" popovertarget="song-title-overlay" aria-label="曲タイトル" hidden></button>
+    <button id="fullscreen" type="button" class="ui-button file-button fullscreen-toggle" role="switch" aria-checked="false" aria-label="フルスクリーン" title="フルスクリーンにする" disabled><span class="fullscreen-switch" aria-hidden="true"></span>フルスクリーン</button>
+    <div class="display-scale"><button id="display-scale-expand" type="button" class="slider-expand-trigger" data-expand-slider="display-scale" aria-label="表示倍率を拡大して調整" title="表示倍率を拡大して調整">表示倍率</button><input id="display-scale" data-slider-id="display-scale" aria-orientation="horizontal" type="range" min="0.5" max="3" step="0.1" value="1" aria-label="表示倍率"><button class="ui-button ui-button--value" id="display-scale-value" type="button" title="表示倍率を1.0倍に戻す" aria-label="表示倍率を1.0倍に戻す">1.0×</button></div>
+    <button class="ui-button" id="current-song-title" type="button" popovertarget="song-title-overlay" aria-label="曲タイトル" hidden></button>
   </header>
   <pre id="song-title-overlay" class="song-title song-title-overlay" popover="auto" aria-label="曲タイトル（3行表示）"></pre>
   <main>
+    <p id="startup-status" role="status">WebFMP を起動しています…</p>
     <section id="monitor" class="monitor" aria-label="音源モニター"></section>
     <div id="settings" hidden></div>
     <div id="diagnostics" class="technical" hidden><div class="technical-content"><pre id="song-title" class="song-title" aria-label="曲データのタイトル" hidden></pre><p id="track-detail">FMP · OPNA ミュージックデータ</p><p class="pcm-files">PCM1 (ADPCM): <span id="pcm1-file">—</span><br>PCM2 (PPZ): <span id="pcm2-file">—</span></p><div class="stats"><div><small>CPU</small><span>NEC V30</span></div><div><small>OUTPUT</small><span id="sample-rate">48 kHz</span></div><div><small>FM WRITES</small><span id="writes">—</span></div><div><small>BUFFER</small><span id="buffer">—</span></div></div><pre id="console">FMP.COM をロードしています…</pre></div>
     <section id="audio-investigation" class="audio-investigation" aria-label="パフォーマンス計測">
-      <div><label>パフォーマンス計測 <select aria-label="パフォーマンス計測"><option value="off" selected>OFF</option><option value="simple">簡易</option><option value="detailed">詳細</option></select></label><span>演奏開始時に反映</span><button type="button" data-diagnostic-copy>診断をコピー</button><button type="button" data-diagnostic-clear>クリア</button><span data-copy-status aria-live="polite"></span></div>
+      <div><label>パフォーマンス計測 <select aria-label="パフォーマンス計測"><option value="off" selected>OFF</option><option value="simple">簡易</option><option value="detailed">詳細</option></select></label><span>演奏開始時に反映</span><button class="ui-button" type="button" data-diagnostic-copy>診断をコピー</button><button class="ui-button" type="button" data-diagnostic-clear>クリア</button><span data-copy-status aria-live="polite"></span></div>
       <textarea readonly wrap="soft" spellcheck="false" aria-label="パフォーマンス計測の結果"></textarea>
     </section>
-    <footer><span id="build-info">WebFMP 2026-10-22 (49adb45)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
+    <footer><span id="build-info">WebFMP main (780b41d)</span><span>Rust + WebAssembly + Web Audio</span></footer></div>
   </main>
   <section class="player-bar" aria-label="再生とファイル選択">
     <div class="player-scroll">
@@ -51,19 +52,19 @@
         <button id="play" class="play-button" title="再生 / 一時停止（Space）" aria-keyshortcuts="Space" disabled><span id="play-icon" aria-hidden="true">▶</span><span id="play-label" class="sr-only">再生する</span></button>
         <button id="next-track" class="icon-button" aria-label="次の曲を再生" title="次の曲" disabled><span aria-hidden="true">▶❘</span></button>
         <button id="stop" class="icon-button" aria-label="停止して先頭に戻す" title="停止して先頭に戻す" disabled>■</button>
-        <span id="elapsed" aria-label="再生時間">00:00</span>
-        <input id="seek" type="range" min="0" max="0" step="any" value="0" aria-label="再生位置" aria-valuetext="00:00" disabled>
+        <button id="elapsed" type="button" class="slider-expand-trigger slider-expand-trigger--value" data-expand-slider="player-seek" aria-label="再生位置を拡大して調整" disabled>00:00</button>
+        <input id="seek" data-slider-id="player-seek" aria-orientation="horizontal" type="range" min="0" max="0" step="any" value="0" aria-label="再生位置" aria-valuetext="00:00" disabled>
         <span id="duration" aria-label="曲の全長">—</span>
         <div class="monitor-counters"><span>TEMPO <b id="monitor-tempo">—</b></span><span>LOOP <b id="monitor-loop">—</b></span></div>
         <i id="status-light" aria-hidden="true"></i><span id="status" class="sr-only" role="status" aria-live="polite">再生の準備をしています</span>
         <span id="track-name">曲ファイル未選択</span>
-        <label class="file-button accent" title="曲データを選択">曲を選択<input id="song-file" type="file" multiple aria-label="曲データを選択"></label>
-        <label class="volume"><span class="sr-only">音量</span><input id="volume" type="range" min="0" max="100" value="65" aria-label="音量"><span id="volume-value">65%</span></label>
-        <button id="play-theme" type="button" disabled>Theme of FMP を再生</button>
+        <label class="ui-button ui-button--primary file-button" title="曲データを選択">曲を選択<input id="song-file" type="file" multiple aria-label="曲データを選択"></label>
+        <span id="player-volume-control" class="preview-volume"></span>
+        <button class="ui-button" id="play-theme" type="button" disabled>Theme of FMP を再生</button>
       </div>
     </div>
-    <div id="drop-progress" class="drop-progress" hidden><span id="drop-progress-label" role="status" aria-live="polite"></span><progress id="drop-progress-bar" aria-label="曲データの読み込み進捗"></progress><button id="drop-cancel" type="button">中断</button></div>
-    <div id="error" role="alert" hidden><span data-error-message></span><div class="error-actions"><button type="button" data-error-authorize hidden>全て許可する</button><button type="button" data-error-close>閉じる</button></div></div>
+    <div id="drop-progress" class="drop-progress" hidden><span id="drop-progress-label" role="status" aria-live="polite"></span><progress id="drop-progress-bar" aria-label="曲データの読み込み進捗"></progress><button class="ui-button" id="drop-cancel" type="button">中断</button></div>
+    <div id="error" role="alert" hidden><span data-error-message></span><div class="error-actions"><button class="ui-button" type="button" data-error-authorize hidden>全て許可する</button><button class="ui-button" type="button" data-error-close>閉じる</button></div></div>
   </section>
 </body>
 </html>
