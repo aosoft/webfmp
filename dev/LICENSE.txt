@@ -23,6 +23,16 @@ FMC.EXE 3.16z
 Copyright (C)1990-2001 Osamu "Guu" Nagai
 出典: FMP-SYSTEM Ver 4.28u / FMC316Z
 
+WinFMP 0.52（PPZ8 light unit を含む）
+WinFMP の演奏処理と、同梱の PPZ8L の C++ 実装を Rust に移植しています。
+移植ソースを非公開に保つ条件で、ビルド済みバイナリの配布許諾を得ています。
+WinFMP の一般利用条件は、以下に原文を収録しています。
+
+PDZF / Z8X
+PDZFZ8XWin 2.0.1 の C++ 実装を Rust に移植しています。
+COM 形式の API を Rust の型と trait に変更し、FMP ワークと PPZ8 に接続しています。
+Windows 版は本アプリの開発者 TAN-Y によるものです。以下に元実装のクレジットを掲載しています。
+
 MAME NEC V30 Rust port
 出典: https://github.com/mamedev/mame/tree/master/src/devices/cpu/nec
 リビジョン: 8aeb28649e1be785a13cd06aa11ef033dfccac17
@@ -35,21 +45,11 @@ ymfm_oxide / ymfm
 BSD-3-Clause。ローカルの Rust コアに、シーク時の波形出力を省略して状態を進める処理を追加しています。
 FM のフィードバック、SSG、ADPCM の状態を保持し、通常の生成に戻る際に出力を復元します。
 
-PPZ8 light unit / PMDWin
-PPZ8L の C++ 実装を Rust に移植しています。PCM の復号・補間・ループ・音量・パンと、
-PPZ8 の常駐 API に対応しています。PMDWin の独自の利用条件は、以下に全文を収録しています。
-
-PDZF / Z8X
-PDZFZ8XWin 2.0.1 の C++ 実装を Rust に移植しています。
-COM 形式の API を Rust の型と trait に変更し、FMP ワークと PPZ8 に接続しています。
-Windows 版は本アプリの開発者 TAN-Y によるものです。以下に元実装のクレジットを掲載しています。
-
 ============================================================
-PPZ8 light unit / PMDWinS 0.52 source usage terms
+WinFMP 0.52 usage terms
+Copyright & Programmed by C60
 Original PPZ8: UKKY (Ukky)
-Windows conversion / PMDWin: C60
-Rust port: src/ppz8.rs; modifications described in docs/PPZ8.md
-Source: PMDWinS.txt, 使用条件＆転載 (UTF-8 transcription)
+Source: WinFMP.txt, 使用条件＆転載 (UTF-8 transcription)
 
 ▼使用条件＆転載
 
